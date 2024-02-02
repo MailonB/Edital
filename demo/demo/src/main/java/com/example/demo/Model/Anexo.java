@@ -4,30 +4,21 @@ import jakarta.persistence.*;
 
 @Entity
 public class Anexo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
 
-    @Column(nullable = false)
+
+    @Column( nullable = false)
     private String nome;
 
     @Column(nullable = false)
     private String link;
 
+    @Id
     @Column(nullable = false)
     private int codEdital;
 
     public Anexo() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public Anexo(String nome, String link, int codEdital) {
             this.nome = nome;
