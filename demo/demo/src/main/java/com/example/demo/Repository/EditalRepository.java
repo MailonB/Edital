@@ -7,8 +7,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.FluentQuery;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,10 +14,8 @@ import java.util.Optional;
 import java.util.function.Function;
 
 @RestController
-@RequestMapping("/Editais")
 public class EditalRepository implements JpaRepository<Edital, Long> {
 
-    @GetMapping
     @Override
     public List<Edital> findAll() {
         return null;
@@ -27,7 +23,7 @@ public class EditalRepository implements JpaRepository<Edital, Long> {
 
     @Override
     public <S extends com.example.demo.Model.Edital> S save(S entity) {
-        return null;
+        return entity;
     }
 
     @Override

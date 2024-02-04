@@ -4,6 +4,8 @@ import com.example.demo.EditalControler.HttpRequester;
 import com.example.demo.Model.Anexo;
 import com.example.demo.Model.Edital;
 import com.example.demo.Portal.Floripa;
+import com.example.demo.Repository.AnexoRepository;
+import com.example.demo.Repository.EditalRepository;
 import com.example.demo.Servico.AnexoServico;
 import com.example.demo.Servico.EditalServico;
 import com.google.gson.JsonElement;
@@ -19,8 +21,15 @@ import static com.example.demo.Portal.Floripa.*;
 public class Captura {
 
 
+    private static final EditalRepository editalRepository = new EditalRepository();
+    private static final EditalServico editalServico = new EditalServico(editalRepository);
+
+    private static final AnexoRepository anexoRepository = new AnexoRepository();
+    private static final AnexoServico anexolServico = new AnexoServico(anexoRepository);
 
     public static void iniciaCaptura() throws IOException {
+
+
 
         // carregar html principal
         String urlHome = "https://wbc.pmf.sc.gov.br/Portal/Mural.aspx?nNmTela=E";
@@ -61,7 +70,9 @@ public class Captura {
             edital.setDtPublicacao(dateToString(editalDet.get("tDtPublicacao").getAsString()));
             edital.setPortal(Floripa.getNomePortal());
 
-             EditalServico.SalvarEdital(edital);
+            editalServico.SalvarEdital(edital);
+
+
 
 
             // Buscar os anexos de cada edital
@@ -81,12 +92,13 @@ public class Captura {
                 //Criando o anexo e enviando pro banco
                 Anexo ane = new Anexo(anexos.get("sNmArquivo").getAsString(),anexos.get("sDsParametroCriptografado").getAsString(),editalDet.get("nCdProcesso").getAsInt());
 
-
                 AnexoServico.SalvarAnexo(ane);
+
 
             }
         }
 
     }
+
 
 }
