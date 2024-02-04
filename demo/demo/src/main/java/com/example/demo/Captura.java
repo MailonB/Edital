@@ -11,6 +11,8 @@ import com.example.demo.Servico.EditalServico;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.jsoup.nodes.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
@@ -18,15 +20,24 @@ import java.net.http.HttpResponse;
 import static com.example.demo.EditalControler.Util.*;
 import static com.example.demo.Portal.Floripa.*;
 
+@Component
 public class Captura {
 
 
-    private static final EditalRepository editalRepository = new EditalRepository();
-    private static final EditalServico editalServico = new EditalServico(editalRepository);
+    private static EditalRepository editalRepository;
+    private static EditalServico editalServico;
 
-    private static final AnexoRepository anexoRepository = new AnexoRepository();
-    private static final AnexoServico anexolServico = new AnexoServico(anexoRepository);
+    private static AnexoRepository anexoRepository;
+    private static AnexoServico anexoServico;
 
+    @Autowired
+    public Captura(EditalRepository editalRepository, EditalServico editalServico,
+                   AnexoRepository anexoRepository, AnexoServico anexoServico) {
+        this.editalRepository = editalRepository;
+        this.editalServico = editalServico;
+        this.anexoRepository = anexoRepository;
+        this.anexoServico = anexoServico;
+    }
     public static void iniciaCaptura() throws IOException {
 
 

@@ -6,10 +6,10 @@ import jakarta.persistence.*;
 public class Anexo {
 
 
-    @Column( nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(500)")
     private String link;
 
     @Id

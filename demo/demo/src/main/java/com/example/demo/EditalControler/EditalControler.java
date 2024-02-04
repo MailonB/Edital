@@ -18,15 +18,18 @@ import java.util.List;
 public class EditalControler {
     @Autowired
     private final EditalServico editalServico;
+    private final Captura captura;
 
     @Autowired
-    public EditalControler(EditalServico editalServico) {
+    public EditalControler(EditalServico editalServico, Captura captura) {
         this.editalServico = editalServico;
+        this.captura = captura;
     }
 
     @PostMapping("/capturarEProcessar")
     public ResponseEntity<Void> capturarEProcessarInformacoes() throws IOException {
         Captura.iniciaCaptura();
+        System.out.println("iniciou a captura");
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

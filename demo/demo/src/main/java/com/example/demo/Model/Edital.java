@@ -10,17 +10,17 @@ public class Edital {
     @Id
     @Column(nullable = false)
     private int licitacao;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
     private String Edital;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(600)")
     private String Objeto;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
     private String modalidade;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
     private String tipo;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
     private String dtPublicacao;
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "VARCHAR(255)")
     private String portal;
 
     public Edital() {

@@ -19,7 +19,7 @@ public class EditalServico {
     }
     @Transactional
     public Edital SalvarEdital(Edital edital) {
-            return editalRepository.saveAndFlush(edital);
+            return editalRepository.save(edital);
         }
 
     public List<Edital> buscarTodosEditais() {
