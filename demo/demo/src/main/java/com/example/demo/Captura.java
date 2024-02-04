@@ -4,6 +4,8 @@ import com.example.demo.EditalControler.HttpRequester;
 import com.example.demo.Model.Anexo;
 import com.example.demo.Model.Edital;
 import com.example.demo.Portal.Floripa;
+import com.example.demo.Servico.AnexoServico;
+import com.example.demo.Servico.EditalServico;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.jsoup.nodes.Document;
@@ -59,9 +61,8 @@ public class Captura {
             edital.setDtPublicacao(dateToString(editalDet.get("tDtPublicacao").getAsString()));
             edital.setPortal(Floripa.getNomePortal());
 
-            // EditalDAO.salvarEdital(edital);
+             EditalServico.SalvarEdital(edital);
 
-            //  EditalDAO.listarEdital();
 
             // Buscar os anexos de cada edital
             // tem o parametro nCdEdital: 981 que tem que ser mandado na requisição
@@ -81,7 +82,7 @@ public class Captura {
                 Anexo ane = new Anexo(anexos.get("sNmArquivo").getAsString(),anexos.get("sDsParametroCriptografado").getAsString(),editalDet.get("nCdProcesso").getAsInt());
 
 
-                anexoDAO.salvarAnexo(ane);
+                AnexoServico.SalvarAnexo(ane);
 
             }
         }

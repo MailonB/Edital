@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 public class EditalServico {
 
     @Autowired
-    private EditalRepository editalRepository;
+    private static EditalRepository editalRepository;
 
-    public Edital SalvarEdital(Edital edital){
+    public static Edital SalvarEdital(Edital edital){
 
         return editalRepository.save(edital);
     }
