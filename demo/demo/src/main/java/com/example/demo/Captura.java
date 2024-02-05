@@ -38,9 +38,8 @@ public class Captura {
         this.anexoRepository = anexoRepository;
         this.anexoServico = anexoServico;
     }
+
     public static void iniciaCaptura() throws IOException {
-
-
 
         // carregar html principal
         String urlHome = "https://wbc.pmf.sc.gov.br/Portal/Mural.aspx?nNmTela=E";
@@ -60,7 +59,6 @@ public class Captura {
         // iterar os processos e requisitar os anexos
         for (JsonElement element : processos.get("d").getAsJsonArray()) {
             JsonObject editais = element.getAsJsonObject();
-
 
 
             // requisitar os detalhes do edital
@@ -83,9 +81,6 @@ public class Captura {
 
             editalServico.SalvarEdital(edital);
 
-
-
-
             // Buscar os anexos de cada edital
             // tem o parametro nCdEdital: 981 que tem que ser mandado na requisição
 
@@ -101,11 +96,9 @@ public class Captura {
                 JsonObject anexos = elementAnexo.getAsJsonObject();
 
                 //Criando o anexo e enviando pro banco
-                Anexo ane = new Anexo(anexos.get("sNmArquivo").getAsString(),anexos.get("sDsParametroCriptografado").getAsString(),editalDet.get("nCdProcesso").getAsInt());
+                Anexo ane = new Anexo(anexos.get("sNmArquivo").getAsString(), anexos.get("sDsParametroCriptografado").getAsString(), editalDet.get("nCdProcesso").getAsInt());
 
                 AnexoServico.SalvarAnexo(ane);
-
-
             }
         }
 

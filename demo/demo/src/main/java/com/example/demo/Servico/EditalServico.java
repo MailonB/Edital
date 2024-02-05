@@ -17,10 +17,11 @@ public class EditalServico {
     public EditalServico(EditalRepository editalRepository) {
         this.editalRepository = editalRepository;
     }
+
     @Transactional
     public Edital SalvarEdital(Edital edital) {
-            return editalRepository.save(edital);
-        }
+        return editalRepository.save(edital);
+    }
 
     public List<Edital> buscarTodosEditais() {
         return editalRepository.findAll();
